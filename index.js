@@ -10,7 +10,6 @@ const sequelize = require('./configs/sequelize');
 const User = require('./models/User');
 const Book = require('./models/Book');
 
-
 app.use('/user', userRouter);
 
 app.listen(3000, () => {
