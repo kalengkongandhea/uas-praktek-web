@@ -1,0 +1,144 @@
+const Kategori = require('../models/kategori');
+const sequelize = require('sequelize');
+const jwt = require('jsonwebtoken');
+
+module.exports.getAllKategori = (req, res) => {
+    Kategori.findAll()
+        .then((kategori) => {
+            res.status(200).json(kategori);
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
+
+module.exports.getDetailKategori = (req, res) => {
+    Kategori.findOne({
+            where: {
+                id: req.params.kategori_id
+            }
+        })
+        .then((kategori) => {
+            res.status(200).json(kategori);
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
+
+module.exports.storeKategori = (req, res) => {
+    jwt.verify(req.token, process.env.SECRETKEY, (error, authData) => {
+        if (error) {
+            res.status(403).json({
+                msg: error.message
+            });
+        } else {
+            if (authData.admin == 1) { 
+                Kategori.create({
+                        nama: req.body.nama
+                    })
+                    .then((kategori) => {
+                        res.status(200).json({
+                            msg: 'Kategori Created',
+                            kategori: kategori
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            } else {
+                res.status(403).json({
+                    msg: 'Forbiden, You Are Not an Admin!'
+                });
+            }
+        }
+    })
+}
+
+module.exports.updateKategori = (req, res) => {
+    jwt.verify(req.token, process.env.SECRETKEY, (error, authData) => {
+        if (error) {
+            res.status(403).json({
+                msg: error.message
+            });
+        } else {
+            if (authData.admin == 1) { 
+                Kategori.findOne({
+                        where: {
+                            id: req.params.kategori_id
+                        }
+                    })
+                    .then((kategori) => {
+                        if (!kategori) {
+                            return res.status(404).json({
+                                msg: 'Kategori Not Found'
+                            });
+                        }
+                        kategori.nama = req.body.nama;
+                        kategori.save();
+
+                        return res.status(200).json({
+                            msg: 'Kategori Updated',
+                            kategori: kategori
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            } else {
+                res.status(403).json({
+                    msg: 'Forbiden, You Are Not an Admin!'
+                });
+            }
+        }
+    })
+}
+
+
+module.exports.destroyKategori = (req, res) => {
+    jwt.verify(req.token, process.env.SECRETKEY, (error, authData) => {
+        if (error) {
+            res.status(403).json({
+                msg: error.message
+            });
+        } else {
+            if (authData.admin == 1) { 
+                Kategori.destroy({
+                        where: {
+                            id: req.params.kategori_id
+                        }
+                    })
+                    .then((kategori) => {
+                        res.status(200).json({
+                            msg: 'Kategori Deleted'
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            } else {
+                res.status(403).json({
+                    msg: 'Forbiden, You Are Not an Admin!'
+                });
+            }
+        }
+    })
+}
+
+module.exports.searchKategori = (req, res) => {
+    Kategori.findAll({
+            limit: 10,
+            where: {
+                title: sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), 'LIKE', '%' + req.params.title + '%')
+            }
+        })
+        .then((kategori) => {
+            res.status(200).json({
+                msg: 'search results',
+                result: kategori
+            });
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
