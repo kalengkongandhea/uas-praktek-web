@@ -14,15 +14,10 @@ var urlencodedParser = bodyParser.urlencoded({
 });
 
 router.get('/', bukuController.getAllBook);
-// get one buku
 router.get('/:buku_id', bukuController.getDetailBook);
-// post buku POST /api/buku gets JSON bodies
 router.post('/', urlencodedParser, auth.verifyToken, bukuController.storeBook);
-// update buku
 router.put('/:buku_id', urlencodedParser, auth.verifyToken, bukuController.updateBook);
-// delete buku
 router.delete('/:buku_id/destroy', urlencodedParser, auth.verifyToken, bukuController.destroyBook);
-// search buku by title
 router.post('/search/:title', urlencodedParser, bukuController.searchBook);
 
 module.exports = router;
