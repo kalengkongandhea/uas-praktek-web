@@ -3,14 +3,14 @@ const express = require('express');
 const app = express();
 
 const userRouter = require('./routes/user');
-const bookRouter = require('./routes/book');
+const bukuRouter = require('./routes/buku');
 const penerbitRouter = require('./routes/penerbit');
 const orderRouter = require('./routes/order');
 
 const sequelize = require('./configs/sequelize');
 
 const User = require('./models/User');
-const Book = require('./models/Book');
+const Buku = require('./models/Buku');
 const Penerbit = require('./models/Penerbit');
 const Order = require('./models/Order');
 

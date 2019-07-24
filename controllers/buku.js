@@ -37,7 +37,7 @@ module.exports.storeBuku = (req, res) => {
                 Buku.create({
                         judul: req.body.judul,
                         jumlah_halaman: req.body.jumlah_halaman,
-                        harga: req.body.harga
+                        harga: req.body.harga,
                         penerbitId: req.body.penerbitId
                     })
                     .then((buku) => {
