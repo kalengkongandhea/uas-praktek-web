@@ -40,7 +40,7 @@ module.exports.storeOrder = (req, res) => {
                     })
                     .then((order) => {
                         res.status(200).json({
-                            msg: 'Order Created',
+                            msg: 'Order berhasil dibuat!',
                             order: order
                         });
                     })
@@ -49,7 +49,7 @@ module.exports.storeOrder = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -72,7 +72,7 @@ module.exports.updateOrder = (req, res) => {
                     .then((order) => {
                         if (!order) {
                             return res.status(404).json({
-                                msg: 'Order Not Found'
+                                msg: 'Order tidak ditemukan'
                             });
                         }
                         order.jumlah = req.body.jumlah;
@@ -80,7 +80,7 @@ module.exports.updateOrder = (req, res) => {
                         order.save();
 
                         return res.status(200).json({
-                            msg: 'Order Updated',
+                            msg: 'Order berhasil diperbarui!',
                             order: order
                         });
                     })
@@ -89,7 +89,7 @@ module.exports.updateOrder = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -112,7 +112,7 @@ module.exports.destroyOrder = (req, res) => {
                     })
                     .then((order) => {
                         res.status(200).json({
-                            msg: 'Order Deleted'
+                            msg: 'Order dihapus!'
                         });
                     })
                     .catch((error) => {
@@ -120,27 +120,9 @@ module.exports.destroyOrder = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
     })
-}
-
-module.exports.searchOrder = (req, res) => {
-    Order.findAll({
-            limit: 10,
-            where: {
-                title: sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), 'LIKE', '%' + req.params.title + '%')
-            }
-        })
-        .then((order) => {
-            res.status(200).json({
-                msg: 'search results',
-                result: order
-            });
-        })
-        .catch((error) => {
-            console.log(error)
-        });
 }

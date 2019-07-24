@@ -42,7 +42,7 @@ module.exports.storeBuku = (req, res) => {
                     })
                     .then((buku) => {
                         res.status(200).json({
-                            msg: 'Buku Created',
+                            msg: 'Buku baru berhasil dibuat!',
                             buku: buku
                         });
                     })
@@ -51,7 +51,7 @@ module.exports.storeBuku = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -74,7 +74,7 @@ module.exports.updateBuku = (req, res) => {
                     .then((buku) => {
                         if (!buku) {
                             return res.status(404).json({
-                                msg: 'Buku Not Found'
+                                msg: 'Buku tidak ditemukan'
                             });
                         }
                         buku.judul = req.body.judul;
@@ -84,7 +84,7 @@ module.exports.updateBuku = (req, res) => {
                         buku.save();
 
                         return res.status(200).json({
-                            msg: 'Buku Updated',
+                            msg: 'Buku berhasil diubah',
                             buku: buku
                         });
                     })
@@ -93,7 +93,7 @@ module.exports.updateBuku = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -116,7 +116,7 @@ module.exports.destroyBuku = (req, res) => {
                     })
                     .then((buku) => {
                         res.status(200).json({
-                            msg: 'Buku Deleted'
+                            msg: 'Buku dihapus!'
                         });
                     })
                     .catch((error) => {
@@ -124,7 +124,7 @@ module.exports.destroyBuku = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -140,7 +140,7 @@ module.exports.searchBuku = (req, res) => {
         })
         .then((buku) => {
             res.status(200).json({
-                msg: 'search results',
+                msg: 'Hasil pencarian',
                 result: buku
             });
         })

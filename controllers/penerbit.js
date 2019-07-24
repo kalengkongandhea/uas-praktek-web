@@ -41,7 +41,7 @@ module.exports.storePenerbit = (req, res) => {
                     })
                     .then((penerbit) => {
                         res.status(200).json({
-                            msg: 'Penerbit Created',
+                            msg: 'Penerbit berhasil dibuat!',
                             penerbit: penerbit
                         });
                     })
@@ -50,7 +50,7 @@ module.exports.storePenerbit = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -73,7 +73,7 @@ module.exports.updatePenerbit = (req, res) => {
                     .then((penerbit) => {
                         if (!penerbit) {
                             return res.status(404).json({
-                                msg: 'Penerbit Not Found'
+                                msg: 'Penerbit tidak ditemukan'
                             });
                         }
                         penerbit.nama = req.body.nama;
@@ -82,7 +82,7 @@ module.exports.updatePenerbit = (req, res) => {
                         penerbit.save();
 
                         return res.status(200).json({
-                            msg: 'Penerbit Updated',
+                            msg: 'Penerbit berhasil diperbarui!',
                             penerbit: penerbit
                         });
                     })
@@ -91,7 +91,7 @@ module.exports.updatePenerbit = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -114,7 +114,7 @@ module.exports.destroyPenerbit = (req, res) => {
                     })
                     .then((penerbit) => {
                         res.status(200).json({
-                            msg: 'Penerbit Deleted'
+                            msg: 'Penerbit dihapus!'
                         });
                     })
                     .catch((error) => {
@@ -122,7 +122,7 @@ module.exports.destroyPenerbit = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -133,12 +133,12 @@ module.exports.searchPenerbit = (req, res) => {
     Penerbit.findAll({
             limit: 10,
             where: {
-                title: sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), 'LIKE', '%' + req.params.title + '%')
+                nama: sequelize.where(sequelize.fn('LOWER', sequelize.col('nama')), 'LIKE', '%' + req.params.nama + '%')
             }
         })
         .then((penerbit) => {
             res.status(200).json({
-                msg: 'search results',
+                msg: 'Hasil pencarian',
                 result: penerbit
             });
         })

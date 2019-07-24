@@ -39,7 +39,7 @@ module.exports.storeKategori = (req, res) => {
                     })
                     .then((kategori) => {
                         res.status(200).json({
-                            msg: 'Kategori Created',
+                            msg: 'Kategori berhasil dibuat!',
                             kategori: kategori
                         });
                     })
@@ -48,7 +48,7 @@ module.exports.storeKategori = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -71,14 +71,14 @@ module.exports.updateKategori = (req, res) => {
                     .then((kategori) => {
                         if (!kategori) {
                             return res.status(404).json({
-                                msg: 'Kategori Not Found'
+                                msg: 'Kategori tidak ditemukan'
                             });
                         }
                         kategori.nama = req.body.nama;
                         kategori.save();
 
                         return res.status(200).json({
-                            msg: 'Kategori Updated',
+                            msg: 'Kategori berhasil diperbarui!',
                             kategori: kategori
                         });
                     })
@@ -87,7 +87,7 @@ module.exports.updateKategori = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -110,7 +110,7 @@ module.exports.destroyKategori = (req, res) => {
                     })
                     .then((kategori) => {
                         res.status(200).json({
-                            msg: 'Kategori Deleted'
+                            msg: 'Kategori dihapus!'
                         });
                     })
                     .catch((error) => {
@@ -118,7 +118,7 @@ module.exports.destroyKategori = (req, res) => {
                     });
             } else {
                 res.status(403).json({
-                    msg: 'Forbiden, You Are Not an Admin!'
+                    msg: 'Oops, Anda bukan admin!'
                 });
             }
         }
@@ -129,12 +129,12 @@ module.exports.searchKategori = (req, res) => {
     Kategori.findAll({
             limit: 10,
             where: {
-                title: sequelize.where(sequelize.fn('LOWER', sequelize.col('title')), 'LIKE', '%' + req.params.title + '%')
+                nama: sequelize.where(sequelize.fn('LOWER', sequelize.col('nama')), 'LIKE', '%' + req.params.nama + '%')
             }
         })
         .then((kategori) => {
             res.status(200).json({
-                msg: 'search results',
+                msg: 'Hasil pencarian',
                 result: kategori
             });
         })

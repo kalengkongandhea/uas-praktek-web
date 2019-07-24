@@ -5,7 +5,7 @@ const sequelize = require('../configs/sequelize');
 class Penerbit extends Sequelize.Model {}
 
 Penerbit.init({
-    name: Sequelize.STRING,
+    nama: Sequelize.STRING,
     email: Sequelize.STRING,
     alamat: Sequelize.STRING,
 }, {

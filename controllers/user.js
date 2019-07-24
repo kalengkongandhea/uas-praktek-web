@@ -87,7 +87,7 @@ module.exports.updateUser = (req, res) => {
                     .then((user) => {
                         if (!user) {
                             return res.status(404).json({
-                                msg: 'User Not Found'
+                                msg: 'User tidak ditemukan'
                             });
                         }
                         user.username = req.body.username;
@@ -153,7 +153,7 @@ module.exports.searchUser = (req, res) => {
         })
         .then((user) => {
             res.status(200).json({
-                msg: 'search results',
+                msg: 'Hasil pencarian',
                 result: user
             });
         })
