@@ -10,7 +10,7 @@ Buku.init({
     harga: Sequelize.INTEGER
 }, {
     sequelize,
-    modelName: 'book'
+    modelName: 'buku'
 });
 
 module.exports = Buku;

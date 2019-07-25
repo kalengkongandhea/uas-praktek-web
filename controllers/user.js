@@ -98,7 +98,7 @@ module.exports.updateUser = (req, res) => {
 
                         return res.status(200).json({
                             msg: 'User diubah',
-                            book: user
+                            user: user
                         });
                     })
                     .catch((error) => {

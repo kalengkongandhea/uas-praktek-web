@@ -35,7 +35,7 @@ module.exports.storeOrder = (req, res) => {
         } else {
             if (authData.admin == 1) { 
                 Order.create({
-                        jumlah: req.body.qty,
+                        jumlah: req.body.jumlah,
                         bukuId: req.body.bukuId
                     })
                     .then((order) => {
