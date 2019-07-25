@@ -18,6 +18,6 @@ router.get('/:kategori_id', kategoriController.getDetailKategori);
 router.post('/', urlencodedParser, auth.verifyToken, kategoriController.storeKategori);
 router.put('/:kategori_id', urlencodedParser, auth.verifyToken, kategoriController.updateKategori);
 router.delete('/:kategori_id/destroy', urlencodedParser, auth.verifyToken, kategoriController.destroyKategori);
-router.post('/search/:title', urlencodedParser, kategoriController.searchKategori);
+router.post('/search/:nama', urlencodedParser, kategoriController.searchKategori);
 
 module.exports = router;

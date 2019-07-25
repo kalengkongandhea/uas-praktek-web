@@ -23,6 +23,6 @@ router.put('/:penerbit_id', urlencodedParser, auth.verifyToken, penerbitControll
 // delete penerbit
 router.delete('/:penerbit_id/destroy', urlencodedParser, auth.verifyToken, penerbitController.destroyPenerbit);
 // search penerbit by name
-router.post('/search/:name', urlencodedParser, penerbitController.searchPenerbit);
+router.post('/search/:nama', urlencodedParser, penerbitController.searchPenerbit);
 
 module.exports = router;

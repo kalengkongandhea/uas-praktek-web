@@ -10,7 +10,7 @@ const orderRouter = require('./routes/order');
 
 const sequelize = require('./configs/sequelize');
 
-const User = require('./models/user');
+const User = require('./models/User');
 const Buku = require('./models/buku');
 const Kategori = require('./models/kategori');
 const Penerbit = require('./models/penerbit');
