@@ -38,6 +38,7 @@ module.exports.storeBuku = (req, res) => {
                         judul: req.body.judul,
                         jumlah_halaman: req.body.jumlah_halaman,
                         harga: req.body.harga,
+                        kategoriId: req.body.kategoriId,
                         penerbitId: req.body.penerbitId
                     })
                     .then((buku) => {
@@ -80,6 +81,7 @@ module.exports.updateBuku = (req, res) => {
                         buku.judul = req.body.judul;
                         buku.jumlah_halaman = req.body.jumlah_halaman;
                         buku.harga = req.body.harga;
+                        buku.kategoriId = req.body.kategoriId;
                         buku.penerbitId = req.body.penerbitId;
                         buku.save();
 
