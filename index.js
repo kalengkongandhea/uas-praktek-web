@@ -10,11 +10,11 @@ const orderRouter = require('./routes/order');
 
 const sequelize = require('./configs/sequelize');
 
-const User = require('./models/User');
-const Buku = require('./models/Buku');
-const Kategori = require('./models/Kategori');
-const Penerbit = require('./models/Penerbit');
-const Order = require('./models/Order');
+const User = require('./models/user');
+const Buku = require('./models/buku');
+const Kategori = require('./models/kategori');
+const Penerbit = require('./models/penerbit');
+const Order = require('./models/order');
 
 Buku.belongsTo(Kategori)
 Buku.belongsTo(Penerbit)
