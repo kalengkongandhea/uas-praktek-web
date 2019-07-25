@@ -18,6 +18,5 @@ router.get('/:order_id', orderController.getDetailOrder);
 router.post('/', urlencodedParser, auth.verifyToken, orderController.storeOrder);
 router.put('/:order_id', urlencodedParser, auth.verifyToken, orderController.updateOrder);
 router.delete('/:order_id/destroy', urlencodedParser, auth.verifyToken, orderController.destroyOrder);
-router.post('/search/:title', urlencodedParser, orderController.searchOrder);
 
 module.exports = router;
