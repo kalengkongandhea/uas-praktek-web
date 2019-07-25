@@ -26,7 +26,7 @@ app.use('/kategori', kategoriRouter);
 app.use('/penerbit', penerbitRouter);
 app.use('/order', orderRouter);
 
-app.listen(3000, () => {
+app.listen(4000, () => {
     console.log('server started');
     sequelize.sync();
 })
